@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>ph7bank - Abra sua Conta</title>
+        <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"></link>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+        <link rel="stylesheet" type="text/css" href="recursos/estilo/cadastroStyle.css"></link>
+        <link rel="shortcut icon" href="#recursos/imagens/imglogo.png"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript" src="recursos/scripts/jquery-3.3.1.min.js"/>
+        <script type="text/javascript" src="recursos/scripts/jquery.mask.min.js"/>
+
+    </h:head>
+    <h:body>
+        <div class="section"></div>
+        <main>
+            <center>
+                <a href="index.xhtml"><img class="responsive-img" style="width: 250px;" src="https://i.imgur.com/ax0NCsK.gif" /></a>
+                <div class="section"></div>
+                <h5 class="indigo-text">Abra sua conta :)</h5>
+                <div class="section"></div>
+                <div class="container">
+                    <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+                        <h:form class="col s12" id="formCadastro">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <h:inputText id="icon_prefix" a:type="text" class="validate" value="#{clienteCadastroBean.nome}"></h:inputText>
+                                    <label for="icon_prefix">Nome Completo</label>
+                                </div>
+                            </div>
+                            <div clas="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">code</i>
+                                    <h:inputText id="icon_code" a:type="text" class="validate cpf" value="#{clienteCadastroBean.cpf}"></h:inputText>
+                                    <label for="icon_code">CPF</label>
+                                </div>
+                            </div>
+                            <div clas="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <h:inputText id="icon_date_range" a:type="text" class="validate date" value="#{clienteCadastroBean.datanascimento}"></h:inputText>
+                                    <label for="icon_date_range">Data de Nascimento</label>
+                                </div>
+                            </div>
+                            <div clas="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock_open</i>
+                                    <h:inputText id="icon_lock_open" a:type="password" class="validate" value="#{clienteCadastroBean.senha}"></h:inputText>
+                                    <label for="icon_lock_open">Senha</label>
+                                </div>
+                            </div>
+                            <div clas="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">card_travel</i>
+                                    <p:inputText id="icon_card_travel" class="validate" value="#{clienteCadastroBean.tipoconta}" onchange="validarConta(this.value);">
+                                    </p:inputText>
+                                    <label for="icon_reorder">1 - Conta Poupança // 2 - Conta Corrente</label>
+                                </div>
+                            </div>
+                            <br />
+                            <center>
+                                <div class='row'>
+                                    <h:commandButton class="col s12 btn btn-large waves-effect indigo" action="#{clienteCadastroBean.cadastrar()}" value="Cadastrar" onclick="alerta();"></h:commandButton>
+                                </div>
+                            </center>
+                        </h:form>
+                    </div>
+                </div>
+            </center>
+        </main>
+    </h:body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.cpf').mask('000.000.000-00');
+            $('.date').mask('00/00/0000');
+        });
+        function validarConta(valor) {
+            if (valor.trim() !== "") {
+                var regra = /[12]/;
+                if (valor.match(regra)) {
+                    if (valor == 1) {
+                        swal("Confirma criação de Conta Poupança?");
+                    } else if (valor == 2) {
+                        swal("Confirma criação de Conta Corrente?");
+                    }
+                } else {
+                    swal("Opção Inválida!", "Escolha uma das opções abaixo ! \n 1 - Conta Poupança \n 2 - Conta Corrente", "error");
+                }
+            }
+        }
+        function alerta() {
+            swal("Bom Trabalho!", "Conta criada com sucesso :)", "success");
+        }
+    </script>
+</html>

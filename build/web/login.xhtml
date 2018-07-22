@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>ph7bank - Acesse sua Conta</title>
+        <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"></link>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+        <link rel="stylesheet" type="text/css" href="recursos/estilo/loginStyle.css"></link>
+        <link rel="shortcut icon" href="recursos/imagens/imglogo.png"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script type="text/javascript" src="recursos/scripts/jquery-3.3.1.min.js"/>
+        <script type="text/javascript" src="recursos/scripts/jquery.mask.min.js"/>
+    </h:head>
+    <h:body>
+        <div class="section"></div>
+        <main>
+            <center>
+                <a href="index.xhtml"><img class="responsive-img" style="width: 250px;" src="https://i.imgur.com/ax0NCsK.gif" /></a>
+                <div class="section"></div>
+                <h5 class="indigo-text">Por favor, faça login em sua conta</h5>
+                <div class="section"></div>
+                <div class="container">
+                    <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+                        <h:form class="col s12" a:method="post">
+                            <div class='row'>
+                                <div class='col s12'>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='input-field col s12'>
+                                    <h:inputText class="validate cpf" id="cpf" a:type="text" value="#{luser.username}"></h:inputText>
+                                    <label for='cpf'>Digite seu CPF</label>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='input-field col s12'>
+                                    <h:inputText class="validate" id="senha" a:type="password" value="#{luser.password}"></h:inputText>
+                                    <label for='senha'>Digite sua senha</label>
+                                </div>
+                                <label style='float: right;'>
+                                    <a class='pink-text' href='#!'><b>Esqueceu sua senha?</b></a>
+                                </label>
+                            </div>
+                            <br />
+                            <center>
+                                <div class='row'>
+                                    <h:commandButton class="col s12 btn btn-large waves-effect indigo" value="Login" action="#{luser.login()}" a:type="submit"/>
+                                </div>
+                            </center>
+                        </h:form>
+                    </div>
+                </div>
+                <a href="#!">Ainda não é cliente ?!</a>
+                <div class="section"></div>
+                <center>
+                    <a href="cadastro.xhtml"><button type='submit' name='btn_cadastro' class='col s12 btn btn-large waves-effect teal accent-3'>ABRA SUA CONTA</button></a>
+                </center>
+            </center>
+        </main>
+    </h:body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.cpf').mask('000.000.000-00');
+            $('.date').mask('00/00/0000');
+        });
+    </script>
+</html>
